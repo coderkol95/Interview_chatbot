@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% if current_user.is_authenticated %}
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>dashboard</title>
-    {% endif %}
+    <title>Interview dashboard</title>
 </head>
 <body>
-    {% if current_user.is_authenticated %}
     <h1>You have logged in</h1>
+    <a href ="{{url_for('single_interview_generation')}}">Single interview generation</a><br>
+    <a href ="{{url_for('multiple_interview_generation')}}">Multiple interview generation</a><br>
     <a href ="{{url_for('logout')}}">Logout</a><br>
-    {% endif %}
 </body>
 </html>

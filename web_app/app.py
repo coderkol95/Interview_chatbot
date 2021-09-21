@@ -7,9 +7,6 @@ from flask_login import UserMixin, login_user, LoginManager, login_required, log
 from wtforms.validators import InputRequired, Length, ValidationError
 from flask_bcrypt import Bcrypt
 
-print()
-
-
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SECRET_KEY'] = 'secretkey123'
@@ -99,6 +96,15 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', form=form) 
 
+@app.route("/single_interview_generation")
+def single_interview_generation():
+    return render_template("single_interview_generation.html")
+
+@app.route("/multiple_interview_generation")
+def multiple_interview_generation():
+    return render_template("multiple_interview_generation.html")
+
+
 @app.route("/logout", methods=["GET","POST"])
 @login_required
 def logout():
@@ -108,7 +114,7 @@ def logout():
     # db.session.add(user)  #@@
     # db.session.commit()  #@@
     
-    return redirect(url_for('login'))
+    return redirect(url_for('home'))
 
 
 if __name__=="__main__":
