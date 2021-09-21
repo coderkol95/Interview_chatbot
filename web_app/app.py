@@ -8,7 +8,6 @@ from flask_bcrypt import Bcrypt
 import numpy as np
 from flask_mail import Mail, Message
 
-
 deadline='28-Sep-2021'
 
 app = Flask(__name__)
@@ -27,7 +26,6 @@ app.config['MAIL_PASSWORD'] = 'pass*123'
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
-
 
 @app.before_first_request
 def create_tables():
@@ -115,14 +113,17 @@ def register():
     return render_template('register.html', form=form) 
 
 @app.route("/single_interview_generation", methods=["GET","POST"])
+@login_required
 def single_interview_generation():
     if request.method == "POST":
-        print("Inside here")
+        #print("Inside here")
         test_topics = request.form.getlist("topic")
         topics_for_printing=", ".join(test_topics)
         emailt = request.form.get("email")
         print(test_topics,"\n", emailt)
         random_pass = np.random.randint(1000000000)
+        #Not to be sent. Ask user to register instead. Also can obtain user details like age etc.
+        #Also send email data to SQLdb and check at client side later
         
         msg = Message(
                 'Invitation for interview: Round 1 - Online interview',
@@ -135,9 +136,9 @@ def single_interview_generation():
     return render_template("single_interview_generation.html")
 
 @app.route("/multiple_interview_generation")
+@login_required
 def multiple_interview_generation():
     return render_template("multiple_interview_generation.html")
-
 
 @app.route("/logout", methods=["GET","POST"])
 @login_required
@@ -147,9 +148,8 @@ def logout():
     # user.authenticated = False  #@@
     # db.session.add(user)  #@@
     # db.session.commit()  #@@
-    
     return redirect(url_for('home'))
-
 
 if __name__=="__main__":
     app.run(debug=True)
+
