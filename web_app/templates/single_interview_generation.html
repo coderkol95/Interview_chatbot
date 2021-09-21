@@ -8,7 +8,20 @@
 </head>
 <body>
     <h1>Generate a single interview</h1><br>
-    Keep check boxes here and a field for accepting the email ID <br>
+    Keep a field for accepting the email ID <br>
+    <form method="POST" action="/single_interview_generation">
+        Statistics <input type="checkbox" value="Statistics" name="topic"><br>
+        Linear Regression <input type="checkbox" value="Linear Regression" name="topic"><br>
+        Logistic Regression <input type="checkbox" value="Logistic Regression" name="topic"><br>
+        KNN <input type="checkbox" value="KNN" name="topic"><br>
+        SVM <input type="checkbox" value="SVM" name="topic"><br>
+        KMeans <input type="checkbox" value="KMeans" name="topic"><br>
+        Decision Tree <input type="checkbox" value="Decision Tree" name="topic"><br>
+        Naive Bayes <input type="checkbox" value="Naive Bayes" name="topic">  <br>
+        <label for="email">Enter your email:</label>
+        <input type="email" id="email" name="email">
+        <input type='submit'>
+    </form>    
     <a href ="{{url_for('dashboard')}}">Go back to interview dashboard</a><br>
     <a href ="{{url_for('logout')}}">Logout</a><br>
 

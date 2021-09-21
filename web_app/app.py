@@ -1,5 +1,4 @@
-from enum import unique
-from flask import Flask, redirect, render_template, url_for
+from flask import Flask, redirect, render_template, url_for, request, flash
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, IntegerField
 from flask_sqlalchemy import SQLAlchemy
@@ -78,6 +77,9 @@ def login():
                 # db.session.commit()   #@@
                 login_user(user)
                 return redirect(url_for("dashboard"))
+        else:
+            return redirect(url_for("home"))
+
     return render_template("login.html", form=form)
 
 @app.route("/register", methods=["GET","POST"])
@@ -96,8 +98,14 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', form=form) 
 
-@app.route("/single_interview_generation")
+@app.route("/single_interview_generation", methods=["GET","POST"])
 def single_interview_generation():
+    if request.method == "POST":
+        print("Inside here")
+        test_topics = request.form.getlist("topic")
+        emailt = request.form.get("email")
+        print(test_topics,"\n", emailt)
+        return "Done"
     return render_template("single_interview_generation.html")
 
 @app.route("/multiple_interview_generation")
