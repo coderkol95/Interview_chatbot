@@ -1,17 +1,31 @@
-from flask import Flask, redirect, render_template, url_for, request, flash
+from flask import Flask, redirect, render_template, url_for, request
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, IntegerField
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 from wtforms.validators import InputRequired, Length, ValidationError
 from flask_bcrypt import Bcrypt
+import numpy as np
+
+from flask_mail import Mail, Message
 
 app = Flask(__name__)
+mail = Mail(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SECRET_KEY'] = 'secretkey123'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
+
+# configuration of mail
+app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'testing.interviewbot@gmail.com'
+app.config['MAIL_PASSWORD'] = 'pass*123'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+mail = Mail(app)
+
 
 @app.before_first_request
 def create_tables():
@@ -103,9 +117,18 @@ def single_interview_generation():
     if request.method == "POST":
         print("Inside here")
         test_topics = request.form.getlist("topic")
-        emailt = request.form.get("email")
+        emailt = list(request.form.get("email").split())
         print(test_topics,"\n", emailt)
-        return "Done"
+        random_pass = np.random.randint(1000000000)
+        
+        # msg = Message(
+        #         'Invitation for interview: Round 1',
+        #         sender ='testing.interviewbot@gmail.com',
+        #         recipients = emailt   #emailt
+        #        )
+        # msg.body = f" Dear aspirant, \n\nCongratulations, you have been shortlisted for interview with 'The awesome data science company'. Please take the interview at this link.\nYour login credentials are: \nUsername:{emailt}\nPassword{random_pass}.\n\n We wish you all the best! \nRegards,\nHR"
+        # mail.send(msg)
+        return render_template('successt.html')
     return render_template("single_interview_generation.html")
 
 @app.route("/multiple_interview_generation")
