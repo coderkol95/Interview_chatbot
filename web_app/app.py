@@ -6,8 +6,10 @@ from flask_login import UserMixin, login_user, LoginManager, login_required, log
 from wtforms.validators import InputRequired, Length, ValidationError
 from flask_bcrypt import Bcrypt
 import numpy as np
-
 from flask_mail import Mail, Message
+
+
+deadline='28-Sep-2021'
 
 app = Flask(__name__)
 mail = Mail(app)
@@ -117,17 +119,18 @@ def single_interview_generation():
     if request.method == "POST":
         print("Inside here")
         test_topics = request.form.getlist("topic")
-        emailt = list(request.form.get("email").split())
+        topics_for_printing=", ".join(test_topics)
+        emailt = request.form.get("email")
         print(test_topics,"\n", emailt)
         random_pass = np.random.randint(1000000000)
         
-        # msg = Message(
-        #         'Invitation for interview: Round 1',
-        #         sender ='testing.interviewbot@gmail.com',
-        #         recipients = emailt   #emailt
-        #        )
-        # msg.body = f" Dear aspirant, \n\nCongratulations, you have been shortlisted for interview with 'The awesome data science company'. Please take the interview at this link.\nYour login credentials are: \nUsername:{emailt}\nPassword{random_pass}.\n\n We wish you all the best! \nRegards,\nHR"
-        # mail.send(msg)
+        msg = Message(
+                'Invitation for interview: Round 1 - Online interview',
+                sender ='testing.interviewbot@gmail.com',
+                recipients = [emailt]   #emailt
+               )
+        msg.body = f" Dear aspirant, \n\nCongratulations, you have been shortlisted for interview with 'The awesome data science company'. \nPlease take the interview at this link:_________________________. \nYou have to take the interview by {deadline}. \nYou will be tested in: {topics_for_printing}\n\nYour login credentials are: \n\nUsername: {emailt}\nPassword: {random_pass}.\n\nWe wish you all the best! \nRegards,\nHR\nThe awesome data science company"
+        mail.send(msg)
         return render_template('successt.html')
     return render_template("single_interview_generation.html")
 
