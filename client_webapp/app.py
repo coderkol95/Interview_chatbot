@@ -8,6 +8,7 @@ from wtforms.validators import InputRequired, Length, ValidationError
 from flask_bcrypt import Bcrypt
 import numpy as np
 from flask_mail import Mail, Message
+import MySQLdb
 
 app = Flask(__name__)
 mail = Mail(app)
@@ -27,6 +28,31 @@ app.config['MAIL_PASSWORD'] = 'pass*123'
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
+
+hostName = 'db4free.net'      
+userName = 'udreedbczu'          
+passWord = 'ezcb9vazqz'           
+dbName =  userName                
+DBConn= MySQLdb.connect(hostName,userName,passWord,dbName)
+def runCMD (DDL):
+    DBConn= MySQLdb.connect(hostName,userName,passWord,dbName)
+    myCursor = DBConn.cursor()
+    retcode = myCursor.execute(DDL) 
+    print (retcode)
+    DBConn.commit()
+    DBConn.close()
+
+def runSELECT (CMD):
+    DBConn= MySQLdb.connect(hostName,userName,passWord,dbName)
+    df_mysql = pd.read_sql(CMD, con=DBConn)    
+    DBConn.close()
+    return df_mysql
+
+def r(msg):
+    if msg[0:6]=="SELECT" or msg[0:6]=="select":
+        return runSELECT(msg)
+    else:
+        runCMD(msg)
 
 @app.before_first_request
 def create_tables():
@@ -124,7 +150,7 @@ def single_interview_generation():
         print(test_topics,"\n", emailt)
         random_pass = np.random.randint(1000000000)
         deadline = request.form.get("deadline")
-
+        r(f"INSERT into aspirant_topics(login,topics) VALUES ('{emailt}','{topics_for_printing}')")
         #Not to be sent. Ask user to register instead. Also can obtain user details like age etc.
         #Also send email data to SQLdb and check at client side later
         
@@ -135,6 +161,7 @@ def single_interview_generation():
                )
         msg.body = f" Dear aspirant, \n\nCongratulations, you have been shortlisted for interview with 'The awesome data science company'. \nPlease take the interview at this link:_________________________. \nYou have to take the interview by {deadline}. \nYou will be tested in: {topics_for_printing}\n\nYour login credentials are: \n\nUsername: {emailt}\nPassword: {random_pass}.\n\nWe wish you all the best! \nRegards,\nHR\nThe awesome data science company"
         mail.send(msg)
+        
         return render_template('successt.html')
     return render_template("single_interview_generation.html")
 
