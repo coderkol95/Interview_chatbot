@@ -16,10 +16,15 @@
         SVM <input type="checkbox" value="SVM" name="topic"><br>
         KMeans <input type="checkbox" value="KMeans" name="topic"><br>
         Decision Tree <input type="checkbox" value="Decision Tree" name="topic"><br>
-        Naive Bayes <input type="checkbox" value="Naive Bayes" name="topic">  <br>
+        Naive Bayes <input type="checkbox" value="Naive Bayes" name="topic">  <br><br>
+
         <label for="email">Enter the interviewee email:</label>
-        <input type="email" id="email" name="email">
-        <input type='submit', value="Send email">
+        <input type="email" id="email" name="email"><br><br>
+
+        <label for="deadline">Deadline(DD/MMM/YYYY):</label>
+        <input type="text" id="deadline" name="deadline"><br><br>
+
+        <input type='submit', value="Send email"><br>
     </form>    
     <a href ="{{url_for('dashboard')}}">Go back to interview dashboard</a><br>
     <a href ="{{url_for('logout')}}">Logout</a><br>

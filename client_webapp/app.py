@@ -9,8 +9,6 @@ from flask_bcrypt import Bcrypt
 import numpy as np
 from flask_mail import Mail, Message
 
-deadline='28-Sep-2021'
-
 app = Flask(__name__)
 mail = Mail(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
@@ -125,6 +123,8 @@ def single_interview_generation():
         emailt = request.form.get("email")
         print(test_topics,"\n", emailt)
         random_pass = np.random.randint(1000000000)
+        deadline = request.form.get("deadline")
+
         #Not to be sent. Ask user to register instead. Also can obtain user details like age etc.
         #Also send email data to SQLdb and check at client side later
         
