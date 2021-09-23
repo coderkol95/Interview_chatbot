@@ -4,9 +4,11 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, IntegerField
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
-from wtforms.validators import InputRequired, Length, ValidationError
+from wtforms.validators import Email, InputRequired, Length, ValidationError
 from flask_bcrypt import Bcrypt
 import numpy as np
+import MySQLdb
+import pandas as pd
 #from flask_mail import Mail, Message
 
 #deadline='28-Sep-2021'
@@ -30,6 +32,54 @@ bcrypt = Bcrypt(app)
 # app.config['MAIL_USE_SSL'] = True
 # mail = Mail(app)
 
+# Configuration for MySQL database for storing aspirant data:
+hostName = 'db4free.net'      
+userName = 'udreedbczu'          
+passWord = 'ezcb9vazqz'           
+dbName =  userName                
+DBConn= MySQLdb.connect(hostName,userName,passWord,dbName)
+
+def runCMD (DDL):
+    
+    """
+
+    MySQL function for CUD of CRUD
+
+    """
+
+    DBConn= MySQLdb.connect(hostName,userName,passWord,dbName)
+    myCursor = DBConn.cursor()
+    retcode = myCursor.execute(DDL) 
+    print (retcode)
+    DBConn.commit()
+    DBConn.close()
+
+def runSELECT (CMD):
+    
+    """
+
+    MySQL function for R of CRUD
+
+    """
+
+    DBConn= MySQLdb.connect(hostName,userName,passWord,dbName)
+    df_mysql = pd.read_sql(CMD, con=DBConn)    
+    DBConn.close()
+    return df_mysql
+
+def r(msg):
+    
+    """
+
+    This function automatically routes all SQL operations to runCMD or runSELECT automatically
+    
+    """
+    
+    if msg[0:6]=="SELECT" or msg[0:6]=="select":
+        return runSELECT(msg)
+    else:
+        runCMD(msg)
+
 @app.before_first_request
 def create_tables():
     db.create_all()
@@ -51,8 +101,8 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(80), nullable=False)
 
 class RegisterForm(FlaskForm):
-    username = StringField('username',validators=[InputRequired(), Length(min=0, max=20)])
-    password = PasswordField('password',validators=[InputRequired(), Length(min=4, max=20)])
+    username = StringField('username',validators=[InputRequired(), Length(min=0, max=100)])
+    password = PasswordField('password',validators=[InputRequired(), Length(min=4, max=100)])
     submit = SubmitField("Sign up")
 
     def validate_username(self, username):
@@ -64,8 +114,8 @@ class RegisterForm(FlaskForm):
             )
 
 class LoginForm(FlaskForm):
-    username = StringField('username',validators=[InputRequired(), Length(min=0, max=20)])
-    password = PasswordField('password',validators=[InputRequired(), Length(min=4, max=20)])
+    username = StringField('username',validators=[InputRequired(), Length(min=0, max=100)])
+    password = PasswordField('password',validators=[InputRequired(), Length(min=4, max=100)])
     submit = SubmitField("Log In")
 
 @app.route("/")
@@ -78,11 +128,18 @@ def dashboard():
     #Interview instructions
     return render_template('dashboard.html')
 
+login_provided_by_aspirant=''
+user_topics = ''
+
 @app.route("/interview", methods=["GET","POST"])
 @login_required
 def interview():
     #Taking the interview
-    return render_template("interview.html")
+    print("*"*30)
+    print(login_provided_by_aspirant)
+    print("*"*30)
+    print(user_topics)
+    return render_template("interview.html", uname=login_provided_by_aspirant, topics=user_topics)
 
 @app.route("/login", methods=["GET","POST"])
 def login():
@@ -93,12 +150,21 @@ def login():
         user = User.query.filter_by(username=form.username.data).first()
         # print(f"Form input {form.username.data}")
         # print(f"User is {user}")
+
         if user:
             # print(f"User {user} found")
             if bcrypt.check_password_hash(user.password, form.password.data):
                 # user.authenticated = True  #@@
                 # db.session.add(user)  #@@
                 # db.session.commit()   #@@
+                global login_provided_by_aspirant
+                global user_topics
+                login_provided_by_aspirant = form.username.data
+                user_topics = r(f"select topics from aspirant_topics where login='{login_provided_by_aspirant}'").iloc[0,0]
+                print("*"*30)
+                print(login_provided_by_aspirant)
+                print("*"*30)
+                print(user_topics)
                 login_user(user)
                 return redirect(url_for("dashboard"))
         else:
