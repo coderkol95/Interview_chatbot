@@ -1,0 +1,265 @@
+Unique_Question_ID,Category,Question,Answer,Difficulty level,MaxMarks,Answer_2,Answer_3
+0,SVM,How does SVM map non-linear boundaries?,By using the kernel trick,1,5,Using the kernel function,Through the kernel method
+1,SVM,What are the different kernels that you know in SVM,Linear Polynomial Sigmoid RBF,1,5,"Radial basis function, euclidean, gaussian",
+2,SVM,What is C in SVM?,A model hyperparameter which is the regularisation parameter for the error term,1,5,Inverse of lambda in logistic regression,regularisation co-efficient for the misclassification term
+3,SVM,What would happen when you use a very low value for C in SVM?,More misclassification would happen,1,5,More points would be wrongly classified,More observations will be misclassified
+4,SVM,Is SVM a supervised or unsupervised machine learning algorithm?,Supervised,1,5,,
+5,SVM,Does the margin need to be maximum or minimum?,Maximum,1,5,Max,
+6,SVM,Can SVM be used for outlier detection?,Yes,2,10,,
+7,SVM,Does soft margin allow misclassifications,Yes,2,10,,
+8,SVM,Do we need to scale the features in SVM?,Yes,2,10,,
+9,SVM,Do outliers affect the SVMmodel?,No,2,10,,
+10,SVM,What do you mean by a hard margin in SVM?,There are no misclassifications,2,10,No sample is wrongly classified,
+11,SVM,What is a hyperplane in SVM,It is the decision boundary in a multidimensional space to separate different classes,2,10,A decision boundary to seperate different classes,A plane supported by the support vectors
+12,SVM,What are the two types of loss in SVM?,Hinge and quadratic loss,2,10,Hinge and quadratic,"Quadratic loss, hinge loss"
+13,SVM,If you train an SVM classifier with an RBF kernel. It seems to underfit the training dataset: should you increase or decrease the hyper-parameter γ (gamma)?,Increase the gamma or C hyper-parameter.,2,10,Increase gamma and C,The gamma and C should be more
+14,SVM,Is SVM a deterministic or non-deterministic algorithm?,Deterministic,2,10,,
+15,SVM,Does increasing C overfit or underfit the SVM model?,It overfits the model,2,10,Overfit,Overfits the model
+16,SVM,How to identify support vectors?,Lagrange multipliers will be greater than zero,3,15,Alpha will be positive,
+17,SVM,What happens if we increase hyperparameter gamma in SVM?,Overfitting,3,15,Overfit,
+18,SVM,Is Standardization better or normalization?,Standardization,3,15,,
+19,SVM,What modification do you need to do in probability hyperparameter to use SVM in ensemble techniques using sklearn?,We have to set probability=True,3,15,probability=True,Set probabilty equal to true
+20,SVM,"What term(s) is/are added to the objective function(using quadratic loss), due to soft margin?",The error term for misclassifications and the constraint term for the misclassifications,3,15,,
+21,Naive Bayes,What is the assumption in Naive Bayes,The features are independent.,1,5,The features do not depend on each other,The variables are independent
+22,Naive Bayes,What mathematical theorem is behind Naive Bayes,Bayes theorem,1,5,Bayes rule,
+23,Naive Bayes,Is Naive Bayes supervised or unsupervised?,Supervised,1,5,,
+24,Naive Bayes,Name a branch of machine learning where Naive Bayes performs very well,Text analytics and Natural Language processing tasks,1,5,NLP and text,Text analytics
+25,Naive Bayes,Can Naive Bayes be used as a base estimator in ensemble techniques?,Yes,1,5,,
+26,Naive Bayes,When do you use GaussianNB as opposed to BernoulliNB?,If the distribution of features is gaussian,2,10,When the distribution of the variables are normal,When the attributes are normally distributed
+27,Naive Bayes,When do you use Laplace smoothing?,When the model encounters previously unseen data,2,10,When attribute value is not present for an observation,When a variable has a value not trained in model
+28,Naive Bayes,What is alpha in Naive Bayes,Alpha is the smoothing parameter,2,10,Variable for laplace smoothing,additive smoothing parameter
+29,Naive Bayes,Why is Naive Bayes naive?,It makes the naive assumption that the features are independent,2,10,It assumes that the variables are independent,It works under the assumption that the attributes do not depend upon each other
+30,Naive Bayes,Is Naive Bayes deterministic or non-deterministic?,Deterministic,2,10,,
+31,Naive Bayes,What is the default value of laplace smoothing in BernoulliNB,1,3,15,one,
+32,Naive Bayes,"Can we use Naive Bayes for regression tasks? If yes, how does it perform?",Yes we can use it but it will perform very poorly,3,15,Yes but works very bad,Yes runs worse
+33,Linear Regression,What is assumption of multicolinearity in linear regression ?,There is no correlation between  independent variables or predictors.,1,5,Independent variables or predictors are  uncorrelated with each other,The pearson correlation between any two independent variables or predictors is zero or close to zero.
+34,Linear Regression,What is assumption of Independence in linear regression ?,They are independent of each other.,1,5,They are collected in such a manner that they are independent of each other,Each Observation is independent of every other observation
+35,Linear Regression,What should be the mean of errors in Linear Regression ?,0,1,5,Zero,
+36,Linear Regression,Between a higher and a lower value of AIC which is preferable,lower,1,5,lower one,lower value is preferred
+37,Linear Regression,Which performance metric is used as cost function in Linear Regression ?,Mean Square Error,1,5,MSE,Average of square of errors.
+38,Linear Regression,What is the difference between cost function of LASSO and Ridge Regression ?,LASSO uses L1 regularization which is sum of absolute value of parameters or coefficients while Ridge uses L2 regularization which is sum of square of parameters or coefficients.,1,5,In LASSO cost function is sum of mean square error  and sum of absolute value of parameters. In Ridge cost fucntion is sum of mean square error and sum of square of parameters or coefficients.,LASSO penalizes the coefficients more strictly as compared to RIDGE.
+39,Linear Regression,Which regularization technique can be used for feature selection in Multiple Linear Regression ?,LASSO,1,5,L1,Least Absolute Shrinkage and Selection Operator
+40,Linear Regression,Why shouldn't we use Linear Regression as a base estimator in Ensemble Techniques ?,Because it is a High Bias algorithm.,1,5,Because it is high bias and low variance algorithm.,Because it is an stable algorithm as it has low variance.
+41,Linear Regression,"Is it suggested to use Linear Regression for time series data, Yes/ No ?",No,1,5,,
+42,Linear Regression,If estimator value is large for a predictor then model will be more sensitive or less sensitive wrt to that predictor?,More sensitive,1,5,,
+43,Linear Regression,Residual plot is plotted between with variables ?,Residuals and fitted Value,1,5,Errors and Fitted Values,Residual And Predicted Values
+44,Linear Regression,Can the model be further improved if there is a pattern seen in residual plot. Yes/No?,Yes,1,5,,
+45,Linear Regression,With the addition of new predictor variable will R square increase or decrease or remain same?,Increase,1,5,,
+46,Linear Regression,With the addition of new predictor variable will Adjusted R square increase or decrease or remain same?,It may increase or decrease or remain same.,1,5,Depending upon whether the penalty incurred / applied to model due to addition of new predictor is more or less as compared to variance explained by the predictor it may increase or decrease.,If explainability of model increases significantly due to addition then it will increase otherwise decrease.
+47,Linear Regression,Is linear regression deterministic or non-deterministic?,Deterministic,1,5,,
+48,Linear Regression,What are different methods of Linear Regression?,"Ordinary Least Square, Gradient Descent Algorithm, Ridge Regression, LASSO Regression",2,10,"OLS, Gradient descent, Ridge and lasso regression","Normal equation, SGD, OLS"
+49,Linear Regression,What is assumption of linearity in linear regression ?,There is linear relationship between Independent and dependent variables.,2,10,There is linear relationship between target variable and predictor variable,There is linear relationship between response variable and predictor variable
+50,Linear Regression,What is assumption of Homoskedasticity in linear regression ?,The variance of error terms are similar across the values of the dependent variables,2,10,The error terms shoud have constant variance.,The variance of errors should not be varying across the values of dependent variable that is no heteroscedasticity.
+51,Linear Regression,What is assumption of Normality in linear regression ?,Residuals in fitted model are normally distributed,2,10,Residuals are normally distributed.,The probability distribution of residuals follows normal distribution.
+52,Linear Regression,Name two test used for checking  Homoskedasticity  ?,Breusch Pagan test and NCV test,2,10,Breusch Pagan test and Non-Constant Error Variance test,
+53,Linear Regression,Name two test used for checking  Normality assumption in Linear Regression?,Omnibus Test and Jarque Bera Test,2,10,,
+54,Linear Regression,What is Durbin Watson Test ?,It is test of autocorrelation in errors.,2,10,It is a measure of autocorrelation in residuals from regression analysis.,Autocorrelation test.
+55,Linear Regression,What is the use of Shapiro Wilk test in Linear regression ?,It is test to check if the probability distribution function of  response / target variable follows normal distribution or not.,2,10,It is used to check if target / response variable is normally distributed.,It is used to test normality in target  / response variable.
+56,Linear Regression,Name two methods to remove multicollinearity in a normally distributed data ?,"Principal Component Analysis, Dropping one of the variable from the pairs highly correlated variable.",2,10,"PCA, Dropping variables using Variance Inflation Factor value.","PCA, dropping variable using VIF values"
+57,Linear Regression,What is the range of Durbin Watson Statistic ?,0 to 4,2,10,zero to four,
+58,Linear Regression,What is best value of Durbin watson ?,2,2,10,Two,
+59,Linear Regression,Can Adjusted R_square be negative ? [YES / NO],Yes,2,10,,
+60,Linear Regression,If there are N rows and M columns observation what is degree of freedom of SST ?,n - one,2,10,n-1,n minus one
+61,Linear Regression,If there are N rows and M columns observation what is degree of freedom of SSE ?,n minus m,2,10,n-m,
+62,Linear Regression,If there are N rows and M columns observation what is degree of freedom of SSR ?,m minus one,2,10,m-1,m - one
+63,Linear Regression,Name 2 methods of scaling the features ?,"Min Max Scalar, Standard Scalar",2,10,"substracting minimum value and dividing by maximum value, substracting mean or average value and dividing by standard deviation.",
+64,Linear Regression,If current value of learning rate is 0.1 and model is diverging then will you increase the learning rate or decrease it?,Increase,2,10,,
+65,Linear Regression,Name 6 hyperparameters of Ridge Regression implemented in sklearn library,"Learning Rate, alpha, fit_intercept, normalize, max_iter,solver",2,10,,
+66,Linear Regression,"If 2000 is value of an estimator, 100 is standard error associated with it and z = 1.96 for 95% confidence level then ,what is the IQR range in which value of estimator will fall if model is trained on different samples of data ?",1084 to 2196,2,10,"Lower limit 1084, Upper Limit 2196",
+67,Linear Regression,What does BLUE property of estimators stands for ?,"Unbiasedness, Constant Variance, Linearity",2,10,Coefficients are unbiased. They have constant variance. They are linear.,
+68,Linear Regression,What do you mean by Efficiency of estimators ?,Coefficients are unbiased and have constant variance,2,10,When Unbiased and constant variance property of coefficients are fulfilled together then coefficients are said to be efficient.,
+69,Linear Regression,If R_square is low is it possible that Linear regression model is still a good model. Yes/No?,Yes,2,10,,
+70,Linear Regression,Name  3 approaches of building a multiple linear regression model using OLS method.,"Forward addition, Backward Elimination, Mixed Approach",2,10,,
+71,Linear Regression,Name 3 use of linear regression model?,"Association / Trend Analysis, Prediction, Interpolation.",2,10,"To find association / Trend between dependent and independent variable, prediction of for new data points, interpolation",
+72,Linear Regression,Is Y = 2 + 3*X1 + 4*X2^2 linear regression or not?,Yes,3,15,,
+73,Linear Regression,In Linear Regression linearity is wrt to what?,Linearity with respect to coefficients,3,15,Coefficients of the predictors are themselves linear.,
+74,Linear Regression,If there is multi colinearity between predictor variables than what will happen to VIF values for each predictor ?,It will get very large.,3,15,It will be very high.,
+75,Linear Regression,R_squared in Bi-variate regression is same as square of pearson correlation between X and Y. True or False ?,TRUE,3,15,,
+76,Linear Regression,Can R_square be negative ?,Yes,3,15,,
+77,Linear Regression,"Is it possible that we can have Very large value of F-statistics, high R_square and Adjusted R_square but none of the predictors is significant i.e. p-value of predictors are insignificant ? If yes what causes this situation ?",Yes. It is due to multicolinearity between predictors,3,15,Yes. This condition occurs when predictors are highly correlated with each other.,
+78,Linear Regression,What is the name of optimization technique for LASSO regression ?,Co-ordinate Descent algorithm,3,15,,
+79,Linear Regression,Name 7 performance metrics used for Linear Regression ?,"R square, Adjusted R Square, Mean Absolute Error, Mean Square Error, Root Mean Square Error, Mean Absolute Precentage Error, Root mean square logarithmic error.",3,15,,
+80,Linear Regression,Name 7 different solvers implemented in sklearn ridge regression?,"auto, svd, cholesky, lsqr, sparse_cg, sag, saga",3,15,,
+81,Linear Regression,Name the  five Gauss Markov assumptions?,"Linearity, Random, Non-Collinearity, Exogeneity, Homoscedasticity",3,15,,
+82,Linear Regression,"Name the principle which says ""For addition of every new predictor penalize the model performance."" ",Principle of Parsimony,3,15,,
+83,Logistic Regression,Is logistic regression Linear or Non linear classifier ?,It is a Linear Classifier.,1,5,,
+84,Logistic Regression,Which function is used in logistic regression for mapping probabilities to full range real numbers (-inf to +inf)?,Logit Function,1,5,,
+85,Logistic Regression,Which function is used in logistic regression converting real numbers to probabilities?,Sigmoid Function,1,5,,
+86,Logistic Regression,Is logistic regression supervised or unsupervised algorithm ?,Supervised  algorithm,1,5,,
+87,Logistic Regression,Is logistic regression used for regression. TRUE/ FALSE ?,FALSE,1,5,,
+88,Logistic Regression,Can we use logistic regression for multiclass classification. YES / NO?,YES,1,5,,
+89,Logistic Regression,Ratio of True Positive to Actual positive is called ?,Recall or sensitivity,1,5,,
+90,Logistic Regression,Ratio of True Positive to Predicted positive is called ?,Precision,1,5,,
+91,Logistic Regression,harmonic mean of Recall and precision is called ?,F1 score,1,5,,
+92,Logistic Regression,Ratio of true Negative to actual negative is called ?,Specificity,1,5,,
+93,Logistic Regression,With the increase in sensitivity the Specificity will increase or decrease or remain same?,Decrease,1,5,,
+94,Logistic Regression,If True Positive Rate increase then False positive Rate will increase or decrease?,Increase,1,5,,
+95,Logistic Regression,Is Logistic Regression deterministic or non-deterministic,Deterministic,1,5,,
+96,Logistic Regression,Do the residuals need to be normally distributed like linear regression?,No,1,5,,
+97,Logistic Regression,Do we maximize or minimize the logit function?,Maximize,1,5,,
+98,Logistic Regression,Name two methods used for multiclass classification in LOGISTIC REGRESSION,"One Vs All, Using Softmax fucntion",2,10,,
+99,Logistic Regression,Name the method  used to best fit the data in Logistic Regression,Maximum Likelihood Estimation,2,10,,
+100,Logistic Regression,Errors in logistic regression follows which probability distribution ?,Binomial Distribution,2,10,,
+101,Logistic Regression, Is logistic regression a generative or a descriptive classifier?,descriptive ,2,10,,
+102,Logistic Regression,Dependent variable in logistic regression follows which probability distribution ?,Binomial Distribution,2,10,,
+103,Logistic Regression,The maximum difference between TPR and FPR is called ?,KS statistics.,2,10,,
+104,Logistic Regression,Lower the KS statistics indicate better the model. TRUE or FALSE ?,FALSE,2,10,,
+105,Logistic Regression,How will you get the threshold in logistic regression?,From the ROC AUC curve,2,10,,
+106,Logistic Regression,Is logistic regression affected by multicollinearity?,Yes,2,10,,
+107,Logistic Regression,Is it possible to design a logistic regression algorithm using a Neural Network Algorithm. YES / NO?,YES,3,15,,
+108,Logistic Regression,Model with higher AIC value id better Model. True or False?,FALSE,3,15,,
+109,Logistic Regression,If we use mean square error in Logistic Regression then resultant cost fucntion will be convex or non convex?,Non Convex,3,15,,
+110,Logistic Regression,Name 5 solvers implemented in sklearn library for logistic regression ?,"newton-cg , lbfgs , liblinear , sag , saga",3,15,,
+111,Logistic Regression,Name 3 different types of logistic regression.,"Binary Logistic regression, Multinomial Logistic regression, Ordinal Logistic regression",3,15,,
+112,Logistic Regression,Which statistical test is used to determine goodness of fit of logistic regression ?,Hosmer-Lemeshow Test,3,15,,
+113,Logistic Regression,Name two alternative of R square in Logistic regression ?,"McFadden’s R square, The Cox and Snell R square",3,15,,
+114,Logistic Regression,What are the assumptions in Logistic Regression?,"1. Independence among features, 2. Linear relation with log odds,    3. Independence among observations",3,15,,
+115,KNN,Is Knn algorithm supervised or unsupervised algorithm?,Supervised,1,5,,
+116,KNN,Is Knn a non-parametric algorithm (yes/no)?,Yes,1,5,,
+117,KNN,Why is KNN a lazy learner?,It does not build a model,1,5,It memorizes all the points.,The model remembers all the observations
+118,KNN,"For which type of problems Knn is used: Regression, Classification , Both",It is used for both types of problems,1,5,It is used for regression and classification,Both can use KNN
+119,KNN,"What is “K” in the KNN Algorithm? What is it used for, in classification?","K represents the number of neighbours you want to select to predict the class of a given item, which is coming as an unseen data for the model.",1,5,K is the no. of neighbours in KNN,The number of neighbors in the model
+120,KNN,How do we handle categorical varibles in Knn algortihm?,By creating dummy variables,1,5,Dummification of the categorical variables,By encoding the categorical variables
+121,KNN,What is the most commonly used distance metric for numeric variables for Knn?,Euclidean distance,1,5,,
+122,KNN,"What is the formula for Minkowski distance between points x and y, the power represented by p? Write sum{} for summation",[sum{(x-y)^p}]^(1/p),2,10,,
+123,KNN,What is the popular method used for finding optimal values of k?,Elbow method,1,5,Knee plot,Knee method
+124,KNN,Why Knn is a non-parametric algorithm?,It does not make any assumption of underlying data distribution,2,10,There are no assmptions of the underlying data,The model does not have any knowledge of the underlying distribution of data
+125,KNN,Is it possible to use the KNN algorithm for Image processing? (yes/no),yes,2,10,,
+126,KNN,Knn algorithm is used for value impution for which type of data?,Both categorical and numerical features,2,10,Both continuous and discrete data,
+127,KNN,In case of Regression how do we predict the value using Knn algorithm?,We take the mean of the values of the 'k' nearest neighbors,2,10,The output is the mean of k nearest neighbours,The prediction is the average of k nearest neighbours
+128,KNN,"Specify Kmeans,Knn belongs to which type either supervised or unsupervised?","K means is an unsupervised learning algorithm, Knn is supervised learning algorithm",1,5,KNN is supervised and KMeans is unsupervised,
+129,KNN,Is Knn highly sensitive to noise and outliers? (yes/no),Yes,2,10,,
+130,KNN,In Knn which type of distance metric is used for categorical variables?,Hamming distance is used,2,10,Hamming,
+131,KNN,Why Knn works slow on large datasets?,It has to make large number of distance computations ,2,10,A lot of distance computations need to be done with the memorised points,The model has to calculate distances with all the stored points
+132,KNN,"For a given value of K, is KNN deterministic or non-deterministic?",Deterministic,2,10,,
+133,KNN,If 'k' increases then what is it's effect on bias?,Bias also increases,3,15,,
+134,KNN,If 'k' decreases then how does it effect the vairance?,Variance will increase,3,15,,
+135,KNN,Knn algorithm does more computation on test time rather than train time? (True/False),TRUE,3,15,,
+136,KNN,"What happens to the decision boundary if we increase the 'k' value""",Decision boundary would become smoother ,3,15,It becomes smoother,
+137,KNN,Why can't KNeighborsClassifier be used in AdaBoost Classifier?,It does not have sample weights,3,15,There are no sample weights,
+138,KNN,What is kd-tree?,k dimensional trees are constructed in the feature space to narrow down the prospective space with a fixed leaf size,3,15,k-dimensional tree which divides the feature space into hypercubes containing minimum number of observations,
+139,KNN,What is ball tree?,The feature space is broken to concentric hyperspheres with a fixed leaf size,3,15,The feature space is split into hyper spheres with a minimum no. of samples in each leaf,
+140,KNN,When does KNN fail?,When there are extremely large no. of features,3,15,When there are a large number of variables,When the feature space is very large
+141,Kmeans,Is Kmeans supervised or unsupervised machine learning?,Unsupervised ,1,5,,
+142,Kmeans,In Kmeans what does 'K' specify?,Number of clusters,1,5,Count of clusters,
+143,Kmeans,Is Kmeans clustering sensitive to Outliers?,yes,1,5,,
+144,Kmeans,Which method is generally used to find the optimum number of clusters,Elbow method,1,5,Knee method,Knee plot
+145,Kmeans,Is feature scaling required for kmeans algorithm?,yes,1,5,,
+146,Kmeans,Why Kmeans is effected by outliers?,It uses mean of the data points to find the cluster center,2,10,Outliers skew the mean,Outliers shift the mean
+147,Kmeans,Does Kmeans is affected by centroid intialization?,yes,2,10,,
+148,Kmeans,What is the name of most common measure used for evaluating quality of a cluster ?,Silhouette Score,2,10,,
+149,Kmeans,To overcome sensitivity to centroid initialization in Kmeans which algorithm can be used?,Kmeans++,2,10,,
+150,Kmeans,"For a given value of K, is KMeans deterministic or non-deterministic?",Non-deterministic,3,15,,
+151,Kmeans,What is init++?,Random initialization of initial cluster centroids inversely proportional to distance,3,15,,
+152,Decision Tree,Is Decision tree supervised or unsupervised?,supervised,1,5,,
+153,Decision Tree,Can decision tree be used for classification and regression both? Yes or No?,yes,1,5,,
+154,Decision Tree,Do we require Feature Scaling for Decision Trees? Yes or No?,No,1,5,,
+155,Decision Tree,What are different attribute selection measures in decision tree?,"Information Gain, Gain ratio, and, Gini inde",2,10,,
+156,Decision Tree,Why do we require Pruning in Decision Trees?,To reduce overfitting or to overcome problem of overfitting,2,10,It reduces the size of decision trees by removing parts of the tree that do not provide power to classify instances or data,"It reduces the size of a Decision Tree which might slightly increase the training error but drastically decrease the testing error, hence making it more adaptable."
+157,Decision Tree,Are Decision Trees affected by the outliers?,No,1,5,,
+158,Decision Tree,Is Decision tree deterministic or non-deterministic?,Non-deterministic,2,10,,
+159,Decision Tree,Are Decision trees affected by multicollinearity? Yes or No?,No,1,5,,
+160,Decision Tree,What is CART?,Classification And Regression Trees,2,10,It is a predictive model for building a decision tree based on Gini’s impurity index as splitting criterion,It is a binary tree build by splitting node into two child nodes repeatedly
+161,Decision Tree,What is information gain in Decision tree?,It is equal to (1- Entropy),3,15,It is the reduction in entropy and is used in training decision tree,It is calculated by comparing the entropy of the dataset before and after a transformation.
+162,Decision Tree,Can decision tree handle missing values? Yes or No,Yes,1,5,,
+163,Decision Tree,What is pruning in decision tree?,Stopping the tree to grow after certain point,2,10,It means reduction in the size of the trees by removing sections of the tree that are non-critical and redundant to classify instances,Early stopping by oreventing the tree to grow. It is of two types - post pruning and pre pruning
+164,Decision Tree,Why are decision trees called unstable?,New data can dramatically restructure the trees,3,15,Because training a tree with a slightly different sub-sample causes the structure of the tree to change drastically,It overfits by learning from noise data as well and optimises for that particular sample
+165,Decision Tree,How does a decision tree handle continuous (numerical) attributes?,By binning the data,3,15,It splits the data and then looks at various splits and calculates the total weighted variance of each of these splits. It chooses the split which provides the minimum variance.,Connnverts these continuous features to a threshold-based boolean feature
+166,Decision Tree,What is gini index in Decision tree?,It is calculated by subtracting the sum of squared probabilities of each class from one,3,15,"The degree of gini index varies from 0 to 1, where 0 means only one class exists. 1 signifies that all the elements are randomly distributed across various classes 0.5 denotes the elements are uniformly distributed into some classes.",one of the splitting criteria
+167,Decision Tree,What is entropy in Decision Tree?,Measure of impurities or randomness in the data points,3,15,Measure of the purity of the sub split and always lies between 0 to 1,one of the splitting criteria
+168,Decision Tree,Does decision tree overfit? Yes or No?,Yes,1,5,,
+169,Decision Tree,Why does decision tree overfit?,It not only learns the data pattern but also the noise,2,10,"When grown to full depth, they tend to learn the pattern of data and also noise and hence tend to overfit","It not only learns data patterns, but also 
+  noise"
+170,Decision Tree,Is decision tree a low bias model? Yes or No?,Yes,1,5,,
+171,Decision Tree,Is decision tree a high variance model? Yes or No?,Yes,1,5,,
+172,Decision Tree,Why is decision tree called as Greedy algorithm?,"Because it only looks in the forward direction and once a split is made, it is not changed afterwards",3,15,It means that at each step it takes the most optimal decision,Since it only looks forward and does not change after division
+173,Decision Tree,Which splitting criterion in decision tree performs better than the others?,gini index or gini impurity,2,10,,
+174,Statistics,What is central limit theorem?,The sampling distribution of the sample mean approaches a normal distribution as the sample size gets larger no matter what the shape of the population distribution.,2,10,"If we have a population with mean μ and standard deviation σ and take sufficiently large random samples from the population with replacement , then the distribution of the sample means will be approximately normally distributed.",It allows to safely assume that the sampling distribution of the mean will be normal in most cases. This means that we can take advantage of statistical techniques that assume a normal distribution
+175,Statistics,What is t-test?,It determines if there is a significant difference between the means of two sample groups,2,10,"The larger the t score, the more difference there is between groups. The smaller the t score, the more similarity there is between groups",It tells how significant the differences between groups are and if those differences could have happened by chance.
+176,Statistics,What is Z-test?,It is used to determine whether two population means are different when the variances are known and the sample size is large,2,10,It is a hypothesis test in which the z-statistic follows a normal distribution,"Statistical test to compare two population data and is used when sample size is large (n>30 or greater than 30), or the population variance is known"
+177,Statistics,What is mean squared error (mse)?,Mean or Average of the square of the difference between actual and estimated values,2,10,It is a measure of how close a fitted line is to data points,The value is always positive or greater than zero. A value close to zero will represent better quality of the estimator / predictor (regression model). An MSE of zero (0) represents the fact that the predictor is a perfect predictor
+178,Statistics,What is R square?,it s a statistical measure that represents the proportion of the variance for a dependent variable that's explained by an independent variables in a regression model,2,10,It is called the coefficient of determination,It gives information about the goodness of fit of the model
+179,Statistics,Can R square be negative? Yes or No?,Yes,1,5,,
+180,Statistics,What is adjusted R square?,It is a modified version of R-squared that has been adjusted for the number of predictors in the model,2,10,It increases when the new term or feature improves the model more than would be expected by chance. It decreases when a predictor improves the model by less than expected,"It indicates how well terms fit a curve or line, but adjusts for the number of terms in a model"
+181,Statistics,What is relationship between mean and median in normal distribution?,They are equal,1,5,Mean = median,Both are same
+182,Statistics,Define Simple random sampling?,"It means taking a small, random portion of the entire population to represent the entire data set, where each member has an equal probability of being chosen",1,5,It allows all the samples/data in the population to have an equal chance of being selected,The sample achieved is representative of the population and sampling bias is eliminated
+183,Statistics,Define Systematic sampling?,"It is a type of probability sampling method in which sample members from a larger population are selected according to a random starting point but with a fixed, periodic interval",1,5,We can assign a number to every population member and then choose the every nth member from that population,"Once a fixed starting point has been identified, a constant interval is selected and is fast and simpler approach"
+184,Statistics,Define Stratified sampling?,Its a method of sampling that involves the division of a population into smaller sub-groups known as strata which are formed based on members' shared attributes or characteristics such as income or education.,2,10,It is also called proportional random sampling or quota random sampling,"subjects are divided into subgroups called strata based on characteristics that they share (e.g., race, gender, educational attainment, etc). Once divided, each subgroup is randomly sampled."
+185,Statistics,Define clustered sampling?,"It is a method of probability sampling that is often used to study large populations, particularly those that are widely geographically dispersed",2,10,Technique where we divide the population into multiple groups (clusters) and then select random groups with a simple random or systematic random sampling,Method where multiple clusters are selected from a population where they are indicative of homogeneous characteristics and have an equal chance of being a part of the sample.
+186,Statistics,Define convenience sampling?,Non-probability sampling that involves the sample being drawn from that part of the population that is close to hand,1,5,"It is the most commonly used sampling technique as its uncomplicated, and economical where members are readily approachable to be a part of the sample.",This sampling method involves getting participants wherever we can find them easily
+187,Statistics,Define Judgement sampling?,"Non-probability sampling technique where the researcher selects units to be sampled based on his own existing knowledge, or his professional judgment",1,5,We carefully choose and pick the sample based on our knowledge and judgements,"It is used where the knowledge of an authority can select a more representative sample, which can in turn yield more accurate results"
+188,Statistics,What is T-Distribution?,"It is a type of normal distribution used for smaller sample sizes, where the variance in the data is unknown",2,10,"Also known as the Student’s distribution, is similar to the normal distribution with its bell shape but has heavier tails","They have a greater chance for extreme values than normal distributions, hence the fatter tails"
+189,Statistics,What is Law of Large Numbers?,"As a sample size grows, its mean gets closer to the average of the whole population",2,10,Average result from repeating an experiment multiple times will better approximate the true or expected underlying result,It guarantees stable long-term results for the averages of random events
+190,Statistics,What is Linear Regression?,Is used to predict the value of a variable based on the value of another variable,1,5,Linear approach for modelling the relationship between response and one or more explanatory variables /features,It is the process of finding a line that best fits the data points available on the plot
+191,Statistics,What is H1 in hypothesis testing?,Alternate hypothesis,1,5,It means there is significant difference between hypothesized value and estimated value,evidence against null hypothesis
+192,Statistics,What is Skewness?,measure of the asymmetry of the probability distribution,1,5,A distribution whose tail on one side of the mode is fatter or longer than on the other,It tells us about the direction of outliers
+193,Statistics,What is H0 in hypothesis testing?,Null hypothesis,1,5,It means there is no difference between hypothesized value and estimated value,complement of alternate hypothesis
+194,Statistics,Why is hypothesis testing done?,To determine the probability of the null hypothesis being true. This will enable us to accept the alternate hypothesis if the p value is very less,3,15,A method for understanding how reliably one can extrapolate observed findings in a sample under study to the larger population,It allows professionals to test their theories and assumptions before putting them into action
+195,Statistics,What is relation between variance and standard deviation?,Standard deviation is square root of variance,1,5,Variance is square of standard deviation,Variance = square of standard deviation
+196,Statistics,What is univariate analysis?,Analysis carried out on only one variable to summarize or describe it,1,5,Only one variable is involved,When only one variable is there to study
+197,Statistics,What is bivariate analysis?,Analysis of two variables to determine relationships between them.,1,5,Two variables are involved,"Looks at two paired data sets, studying whether a relationship exists between them"
+198,Statistics,What is Multivariate Analysis?,analysis of data involving more than one type of observation,1,5,It is used to study more complex sets of data that univariate methods cannot handle,Enables to investigate relationships in the data
+199,Statistics,How do you calculate residual in linear regression?,Take the predicted value and subtract it from the measured value,2,10,actual value minus predicted value,The difference between an observed value of the response variable and its value predicted from the regression line
+200,Statistics,Can you plot a correlation between a categorical variable and a continuous variable? Yes or No?,No,1,5,,
+201,Statistics,What's a Normal Distribution?,"Probability distribution that is symmetric about the mean, showing that data near the mean are more frequent in occurrence than data far from the mean",2,10,It is also known as the Gaussian distribution,"Its shape is like bell curve and the mean, mode, and median are all equal."
+202,Statistics,Define Correlation?,The extent to which two variables are linearly related,1,5,Measure os relation between two continuous variables,Value ranges from -1 to 1. 1 means strong positive relation and -1 means strong negative relation
+203,Statistics,"What is relation of mean, mode, median in case of left skewness?","Mean is less than the median, which is less than the mode",3,15,Mean < Median <Mode,Mode is largest and then comes median and mean is smallest
+204,Statistics,"What is relation of mean, mode, median in case of right skewness?","Mode is less than the median, which is less than the mean",3,15,Mode< Median <Mean,Mean is largest and then comes median and mode is smallest
+205,Statistics,What is Multiple Regression?,It uses several explanatory variables or features to predict the outcome of a response variable,2,10,To analyze the relationship between a single dependent variable and several independent variables,Goal is to model the linear relationship between the several explanatory (independent) variables and response (dependent) variables.
+206,Statistics,What is meant by goodness of fit?,"With respect to statistical models, it describes how well model fits a set of observations.",3,15,It establishes the discrepancy between the observed values and expected values of the model in a normal distribution case.,Statistical test to check if sample data fits a distribution from a certain population
+207,Statistics,What are beta values for Multiple Regression?,standardized regression coefficient,2,10,Estimated coeficients of the feature variables indicating a change on response variable caused by a unit change of respective feature variable keeping all the other variables constant/unchanged,Measure of total effect of the predictor variables
+208,Statistics,What is Poisson Distribution?,Probability distribution that shows how many times an event is likely to occur over a specified period.,3,15,It is a discrete function that only takes specific values,Used to describe the distribution of rare events in a large population.
+209,Statistics,What is Uniform Distribution?,Probability distribution in which all outcomes are equally likely,2,10,It defines equal probability over a given range for a continuous distribution,Continuous uniform or rectangular distribution that is bounded by the minimum and maximum values.
+210,Statistics,What is Binomial Distribution?,It has 2 possible outcomes,3,15,"Allows us to compute the probability of observing a specified number of ""successes"" when the process is repeated a specific number of times",It gives the probability of getting r events out of n trials
+211,Statistics,What is Kurtosis?,It describes the peakiness of the probability distribution function,2,10,Measure of whether the data are heavy-tailed or light-tailed relative to a normal distribution,Kurtosis measures extreme values in either tail of the distribution
+212,Statistics,Define Bayes Theorem?,"Likelihood of an outcome occurring, based on a previous outcome",3,15,Formula for determining conditional probability,It gives the pobability of occurrence of an event given that another event has already occurred
+213,Statistics,Are gaussian and normal distribution same? Yes or no?,Yes,2,10,,
+214,Statistics,What is range of correlation coefficient ?,(-1 to 1),1,5,From minus 1 to plus 1,Ranges from -1 to 1
+215,Statistics,What is a histogram?,Approximate representation of the distribution of numerical data,2,10,It is used to graphically summarize the distribution of a univariate data set.,Diagram consisting of rectangles whose area is proportional to the frequency of a variable and whose width is equal to the class interval
+216,Statistics,What is the range of R square value?,Generally it is 0 to 1 but it can be negative too sometimes,1,5,0 to 100 percent,Ranges from 0 - 1
+217,Statistics,Define Type 1 error?,When a null hypothesis is rejected even though it is correct,3,15,"In statistical hypothesis testing, it is the mistaken rejection of the null hypothesis",Rejecting a true null hypothesis
+218,Statistics,Define Type 2 error?,When we fail to reject a null hypothesis that is actually false,3,15,"In statistical hypothesis testing, it is mistaken acceptance of the null hypothesis",Accepting a false null hypothesis
+219,Statistics,Explain quartiles?,Type of percentile which divides the number of data points into four parts or quarters on the basis of their values,2,10,"Divides the entire set into four equal parts so, there are three quartiles, first, second and third represented by Q1, Q2 and Q3, respectively","Divides data into three points—a lower quartile, median, and upper quartile—to form four groups of the dataset"
+220,Statistics,what is OLS?,Type of linear least squares method for estimating the unknown parameters in a linear regression model,1,5,Ordinary Least squares,Method to predict values of a continuous response variable using one or more explanatory variables and can also identify the strength of the relationships between these variables
+221,Statistics,What is chi square test used?,Statistical test used to compare observed results with expected results,3,15,Statistical procedures to examine the differences between categorical variables in the same population,"The purpose of this test is to determine if a difference between observed data and expected data is due to chance, or if it is due to a relationship between the variables"
+222,Statistics,Is OLS an iterative process? Yes or No?,No,1,5,,
+223,Statistics,What is alpha in hypothesis testing?,It is the significance level which is the probability of rejecting the null hypothesis when it is true,2,10,It is probability of Type I error in any hypothesis test,1-Confidence level
+224,Statistics,What is beta in hypothesis testing?,The probability of making a type II error,2,10,It is probability of failing to reject the null hypothesis when it is actually false,1-power
+225,Statistics,What is P value?,It helps to determine the significance of the results in relation to the null hypothesis.,3,15,A smaller value means that there is stronger evidence in favor of the alternative hypothesis,"The lower the value, the greater the statistical significance of the observed difference."
+226,Statistics,What is heteroskedasticity?,Situations where the variance of the residuals is unequal over a range of measured values,3,15,"It happens when the standard deviations of a predicted variable, monitored over different values of an independent variable are non-constant","When running a regression analysis, it results in an unequal scatter of the residuals (also known as the error term)"
+227,Statistics,What happens to the distribution if the sample size inceases?,"As sample sizes increase, the sampling distributions approach a normal distribution",3,15,"With ""infinite"" numbers of successive random samples, the mean of the sampling distribution is equal to the population mean (µ).","As the sample sizes increase, the variability of each sampling distribution decreases."
+228,Statistics,What is VIF?,Variance inflation factor,2,10,It is the ratio of the variance of estimating some parameter in a model that includes multiple other terms by the variance of a model constructed using only one term,It quantifies the severity of multicollinearity in an ordinary least squares regression analysis
+229,Statistics,Define mean?,average of all observations,1,5,sum of all observations divided by total number of observations,sum of all data/ total number of data points
+230,Statistics,Define median?,the middle observation,1,5,Value or quantity lying at the midpoint of a frequency distribution of observed values or quantities,The number that is half way between the data
+231,Statistics,Define mode?,The value that appears most often in a set of data values.,1,5,The value that appears most frequently in a data set,The highest number of times a datapoint has occurred in the data
+232,Statistics,When should median be considered over mean?,When data is skewed,2,10,If the data contains outliers,When exact mid value of the data is of more relvance
+233,Statistics,Define standard deviation?,A quantity expressing by how much the samples in a distribution differ from the mean value for the group,1,5,In statistics it is a measure of the amount of variation or dispersion of a set of values from its mean,It shows how much farther away data points are from the mean
+234,Statistics,Define IQR?,Inter quartile range,1,5,It is equal to (Q3 - Q1),It describes the middle 50% of values when ordered from lowest to highest
+235,Statistics,What is the null hypothesis of linear regression?,All the beta values are equal to 0,3,15,Predictors have no effect on response variable,Independent and dependent variables have no relation with each other
+236,Statistics,Can there be a model without independent variables in regression? Yes or No?,No,1,5,,
+237,Statistics,What are the coefficients in regression?,They estimates of the unknown population parameters and describe the relationship between a predictor variable and the response,3,15,They are the beta values for each independent variables,They represent the significance of independent variables
+238,Statistics,What is multicollinearity?,It is a phenomenon in which one predictor variable in a multiple regression model can be linearly predicted from the others with a substantial degree of accuracy,2,10,It is the occurrence of high inter correlations among two or more independent variables,It is a problem because it undermines the statistical significance of an independent variable
+239,Statistics,How to detect multicollinearity?,"Variance Inflation Factor(VIF) for each independent variable, heatmap plot (correlation plot)",3,15,,
+240,Statistics,How to reduce the impact of multicollinearity between features?,Compute VIF and remove the feature having higher VIF between each pair of correlated features,3,15,Linearly combine the independent variables like adding them together.,Perform an analysis designed for highly correlated variables such as principal components analysis or partial least squares regression.
+241,Statistics,What will happen if we don't remove the effect of multicollinearity in a dataset?,It reduces the precision of the estimated coefficients which weakens the statistical power of the regression model,3,15,Untrustoworthy p-values are resulted,"It does not impact prediction, but can impact inference of the predictor variables"
+242,Statistics,Expand the acronym AIC.,Akaike information criterion,2,10,Lower values indicate a better-fit model,It can be termed as a measure of the goodness of fit of any estimated statistical model
+243,Statistics,Expand the acronym BIC.,Bayesian information criterion,2,10,It is a method for scoring and selecting a model.,Lower values indicate a better-fit model
+244,Statistics,How will handle multicollinearity without dropping any of the features?,Linearly combine the independent variables like adding them together.,3,15,Perform an analysis designed for highly correlated variables such as principal components analysis or partial least squares regression.,Combine the variables or reduce their number by doing principal Component analysis
+245,Statistics,How to convert positive skewed data to normal?,"Log transform, square root transform, reciprocal trasnform",2,10,,
+246,Statistics,Importance of Hypothesis Testing?,It is the process used to evaluate the strength of evidence from the sample and provides a framework for making determinations related to the population,3,15,It is how you decide if something really happened,A formalized theory will force us to think about what results we should look for in an experiment.
+247,Statistics,What is the importance of confidence Interval?,"It represent the range of scores that are likely if we were to repeat the survey, they are important to consider when generalizing results.",3,15,"It provides information about a range in which the true value lies with a certain degree of probability, as well as about the direction and strength of it",It also tells you about how stable the estimate is. A stable estimate is one that would be close to the same value if the survey were repeated.
+248,Statistics,Explain selection bias?,"It is introduced due to selection of individuals, groups, or data in such a way that proper randomization is not achieved",1,5,"Selecting individuals, groups or data for analysis that is not representative of the population.",When data points are not selected randomly from population and so the sample is not proper
+249,Statistics,What is an observation called an outlier?,It is called an outlier when the observation differs significantly from other observations,1,5,It will make the data skewed,Extreme data points
+250,Statistics,How to screen outliers?,"Z-score/standard deviations, Interquartile Range (IQR), boxplots, DBScan clustering",2,10,,
+251,Statistics,What is an inlier?,An inlier is a data observation that lies within the rest of the dataset and is unusual or an error,1,5,A data value that lies in the interior of a statistical distribution and is in error,Inliers are unusual observations that lie within the data set
+252,Statistics,How to handle inliers?,Simply remove them from the dataset to address them.,2,10,Delete them,Don't include them in data
+253,Statistics,What is KPI?,"It stands for Key Performance Indicator, which is a measurable metric used to determine how well a company is achieving its business objectives",1,5,A performance indicator or key performance indicator which is a type of performance measurement,A quantifiable measure of performance over time for a specific objective
+254,Statistics,What is Pareto principle?,"It states that for many outcomes, roughly 80% of consequences come from 20% of causes",3,15,Also called as 80/20 principle which states that 80% of results are produced by 20% of inputs,"In business, a goal of the rule is to identify inputs that are potentially the most productive and make them the priority"
+255,Statistics,what is causation?,It indicates a relationship between two events where one event is affected by the other,2,10,"When the value of one event, or variable, increases or decreases as a result of other variable",Means that one event causes another event to occur.
+256,Statistics,What is quantitative data ?,"It expresses a certain quantity, amount or range",1,5,It is numerical in nature,It can be defined as a group of quantifiable information that can be used for mathematical computations and statistical analysis
+257,Statistics,What is qualitative data ?,"It is the descriptive and conceptual findings collected through questionnaires, interviews, or observation",1,5,It describes qualities or characteristics,It can be observed but not measured as it is not numerical in nature
+258,Statistics,What is the benefit of using box plot?,It displays the range and distribution of data and gives five point summary,2,10,It provides indication of the data’s symmetry and skewness.,It gives information about outliers
+259,Statistics,"The standard normal curve has a total area to be under one, and it is symmetric around zero. True or False?",TRUE,1,5,,
+260,Statistics,Does a symmetric distribution need to be unimodal? Yes or No?,No,1,5,,
+261,Statistics,What is Bessel's correction?,"It is the use of n − 1 instead of n in the formula for the sample variance and sample standard deviation, where n is the number of observations in a sample",3,15,This method corrects the bias in the estimation of the population variance,It refers to the n-1 part used as the denominator in the formula of sample variance or sample distribution
+262,Statistics,Is the impact of outliers in statistics positive or negative?,Negative,1,5,,

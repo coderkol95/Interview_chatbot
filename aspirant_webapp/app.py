@@ -13,6 +13,8 @@ import pandas as pd
 
 #deadline='28-Sep-2021'
 
+question_bank = pd.read_csv(r"C:/Users/ADMIN/Documents/Codebase/Interview_chatbot/Question_bank.csv")
+
 app = Flask(__name__)
 #mail = Mail(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
@@ -139,7 +141,13 @@ def interview():
     print(login_provided_by_aspirant)
     print("*"*30)
     print(user_topics)
-    return render_template("interview.html", uname=login_provided_by_aspirant, topics=user_topics)
+    data=[
+         {'q1':'a','q2':'b','q3':'c'},
+         {'q1':'a','q2':'b','q3':'c'},
+         {'q1':'a','q2':'b','q3':'c'}        
+    ]
+    
+    return render_template("interview.html", uname=login_provided_by_aspirant, topics=user_topics, data = data)
 
 @app.route("/login", methods=["GET","POST"])
 def login():

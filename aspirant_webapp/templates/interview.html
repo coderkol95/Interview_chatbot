@@ -12,6 +12,12 @@
     <h2>Welcome, {{ uname }}</h2>
     <h3>Topics you will be tested in: {{ topics }}</h3>
     <a href ="{{url_for('successt')}}">Complete the interview</a><br>
-
+    <form>
+        {% for item in data %}
+            <li>{{item.q1}}</li>
+            <li>{{item.q2}}</li>
+            <li>{{item.q3}}</li>
+        {% endfor %}
+    </form>
 </body>
 </html>
