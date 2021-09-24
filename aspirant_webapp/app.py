@@ -142,11 +142,15 @@ def interview():
     print("*"*30)
     print(user_topics)
     data=[
-         {'q1':'a','q2':'b','q3':'c'},
-         {'q1':'a','q2':'b','q3':'c'},
-         {'q1':'a','q2':'b','q3':'c'}        
+         {'topic':'Statistics','q1':'What is mean?','q2':'What is median?','q3':'Why do we do hypothesis testing'},
+         {'topic':'Linear regression','q1':'Describe the OLS process','q2':'What are the BLUE properties','q3':'What are the properties of residuals'},
+         {'topic':'Logistic regression','q1':'How does MLE work?','q2':'Why do we use Z test for co-efficient in logistic regression?','q3':'How does OVR work?'},
+         {'topic':'KNN','q1':'What is k in KNN?','q2':'How does KNN do missing value imputation?','q3':'When does KNN fail?'}        
     ]
     
+    if request.method =='POST':
+        return render_template('successt.html')
+
     return render_template("interview.html", uname=login_provided_by_aspirant, topics=user_topics, data = data)
 
 @app.route("/login", methods=["GET","POST"])
@@ -197,6 +201,7 @@ def register():
     return render_template('register.html', form=form) 
 
 @app.route("/successt")
+@login_required
 def successt():
     return render_template("successt.html")
 
