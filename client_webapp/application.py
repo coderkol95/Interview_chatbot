@@ -17,13 +17,13 @@ import pandas as pd
 # deadline_days = 7
 # deadline = (DT.date.today() + DT.timedelta(days=deadline_days)).strftime('%d-%m-%y')
 
-# Initialising the app
-app = Flask(__name__)
+# Initialising the application
+application = Flask(__name__)
 
 #Excel
-excel.init_excel(app)
+excel.init_excel(application)
 
-@app.route("/upload", methods=['GET', 'POST'])
+@application.route("/upload", methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
         global data
@@ -32,16 +32,16 @@ def upload_file():
         details = pd.DataFrame(data)
 
 
-# Initialise the Mail class object with app for sending emails
-mail = Mail(app)
+# Initialise the Mail class object with application for sending emails
+mail = Mail(application)
 
 # Specifications for SQLAlchemy database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
-app.config['SECRET_KEY'] = 'secretkey123'     #Statutory for security reasons
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+application.config['SECRET_KEY'] = 'secretkey123'     #Statutory for security reasons
+application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-#app.config['UPLOAD_FOLDER'] = '/uploads_interviewbot/'
-#app.config['MAX_CONTENT_PATH'] = '1000000'
+#application.config['UPLOAD_FOLDER'] = '/uploads_interviewbot/'
+#application.config['MAX_CONTENT_PATH'] = '1000000'
 
 """
 
@@ -55,19 +55,19 @@ A different database is used for storing credential information locally for clie
 """
 
 # Initialising SQLAlchemy database object for storing client login details
-db = SQLAlchemy(app)
+db = SQLAlchemy(application)
 
 # Initialising hashing object for exchanging data between client and server
-bcrypt = Bcrypt(app)
+bcrypt = Bcrypt(application)
 
 # Configuration for mail
-app.config['MAIL_SERVER']='smtp.gmail.com'
-app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = 'testing.interviewbot@gmail.com'
-app.config['MAIL_PASSWORD'] = 'pass*123'
-app.config['MAIL_USE_TLS'] = False
-app.config['MAIL_USE_SSL'] = True
-mail = Mail(app)
+application.config['MAIL_SERVER']='smtp.gmail.com'
+application.config['MAIL_PORT'] = 465
+application.config['MAIL_USERNAME'] = 'testing.interviewbot@gmail.com'
+application.config['MAIL_PASSWORD'] = 'pass*123'
+application.config['MAIL_USE_TLS'] = False
+application.config['MAIL_USE_SSL'] = True
+mail = Mail(application)
 
 # Configuration for MySQL database for storing aspirant data:
 hostName = 'db4free.net'      
@@ -117,7 +117,7 @@ def r(msg):
     else:
         runCMD(msg)
 
-@app.before_first_request
+@application.before_first_request
 def create_tables():
 
     """
@@ -131,7 +131,7 @@ def create_tables():
 # Configuration for login manager which manages sessions
 # Reference: https://flask-login.readthedocs.io/en/latest/
 login_manager = LoginManager()
-login_manager.init_app(app)
+login_manager.init_app(application)
 login_manager.login_view="login"
 
 @login_manager.user_loader
@@ -200,7 +200,7 @@ class LoginForm(FlaskForm):
     password = PasswordField('password',validators=[InputRequired(), Length(min=4, max=20)])
     submit = SubmitField("Log In")
 
-@app.route("/")
+@application.route("/")
 def home():
 
     """
@@ -211,7 +211,7 @@ def home():
 
     return render_template('home.html')
 
-@app.route("/dashboard", methods=["GET","POST"])
+@application.route("/dashboard", methods=["GET","POST"])
 @login_required
 def dashboard():
 
@@ -223,7 +223,7 @@ def dashboard():
 
     return render_template('dashboard.html')
 
-@app.route("/login", methods=["GET","POST"])
+@application.route("/login", methods=["GET","POST"])
 def login():
 
     """
@@ -258,7 +258,7 @@ def login():
 
     return render_template("login.html", form=form)
 
-@app.route("/register", methods=["GET","POST"])
+@application.route("/register", methods=["GET","POST"])
 def register():
 
     """
@@ -288,7 +288,7 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', form=form) 
 
-@app.route("/single_interview_generation", methods=["GET","POST"])
+@application.route("/single_interview_generation", methods=["GET","POST"])
 @login_required
 def single_interview_generation():
 
@@ -358,20 +358,26 @@ def formatter(dataf):
     emails = emails[1:]
     return emails, topics
 
-@app.route("/multiple_interview_generation", methods=["GET","POST"])
+@application.route("/multiple_interview_generation", methods=["GET","POST"])
 @login_required
 def multiple_interview_generation():
+    """
     
-    if request.method=="POST":
-        """
-        
-        1. Provide sample for download
-        2. Accept deadline and client input from csv file
-        3. Convert excel to dataframe
-        4. Send it to the formatter function to obtain dictionary of emails:topics
-        5. Send emails with the topics to the aspirants
+    This generates interviews for multiple aspirants, stores the data in the database and sends emails
 
-        """
+    Functionality:
+    1. Provide sample csv file for upload
+    2. Get the email and topics from the excel file to a dataframe for further processing
+    3. Extract data from the dataset in the format of {emails:topics,..}
+    4. Get the deadline for the interview from the form entered by the client user
+    5. Send the 'email' of and the 'topics' for the aspirants to the MySQLdb database. This will be used by the aspirant side program.
+    6. Draft the message for the aspirant
+    7. Send the message to the aspirant
+    7. Send the user to a success page
+
+    """
+
+    if request.method=="POST":
 
         deadline = request.form.get("deadline")
         data = pd.DataFrame(request.get_array(field_name='file'))
@@ -379,17 +385,13 @@ def multiple_interview_generation():
         # Not to be sent. Ask user to register instead. Also can obtain user details like age etc.
      
         for em in emas:
-            random_pass = np.random.randint(1000000000)    
-
+            # random_pass = np.random.randint(1000000000)    
             msg = Message(
                     'Invitation for interview: Round 1 - Online interview',
                     sender ='testing.interviewbot@gmail.com',
                     recipients = [em]   #emailt
                 )
-
-            msg.body = f" Dear aspirant, \n\nCongratulations, you have been shortlisted for interview with 'The awesome data science company'. \nPlease take the interview at this link:_________________________. \nYou have to take the interview by {deadline}. \nYou will be tested in: {', '.join(tpcs[em])}\n\nYour login credentials are: \n\nUsername: {em}\nPassword: {random_pass}.\n\nWe wish you all the best! \nRegards,\nHR\nThe awesome data science company"
-            
-            # print(msg.body)
+            msg.body = f" Dear aspirant, \n\nCongratulations, you have been shortlisted for interview with 'The awesome data science company'. \nPlease take the interview at this link:_________________________. \nYou have to take the interview by {deadline}. \nYou will be tested in: {', '.join(tpcs[em])}\n\nYour login credentials are: \n\nUsername: {em}.\n\nWe wish you all the best! \nRegards,\nHR\nThe awesome data science company"
             mail.send(msg)
 
             r(f"INSERT into aspirant_topics(login,topics) VALUES ('{em}','{', '.join(tpcs[em])}')")
@@ -398,7 +400,7 @@ def multiple_interview_generation():
         return render_template("successt.html")
     return render_template("multiple_interview_generation.html")
 
-@app.route("/logout", methods=["GET","POST"])
+@application.route("/logout", methods=["GET","POST"])
 @login_required
 def logout():
 
@@ -422,7 +424,7 @@ if __name__=="__main__":
     Controlling function
 
     """
-    excel.init_excel(app)
+    excel.init_excel(application)
 
-    app.run(debug=True)
+    application.run(debug=True)
 
