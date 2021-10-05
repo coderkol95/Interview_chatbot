@@ -141,14 +141,27 @@ def interview():
     print(login_provided_by_aspirant)
     print("*"*30)
     print(user_topics)
-    data=[
-         {'topic':'Statistics','q1':'What is mean?','q2':'What is median?','q3':'Why do we do hypothesis testing'},
-         {'topic':'Linear regression','q1':'Describe the OLS process','q2':'What are the BLUE properties','q3':'What are the properties of residuals'},
-         {'topic':'Logistic regression','q1':'How does MLE work?','q2':'Why do we use Z test for co-efficient in logistic regression?','q3':'How does OVR work?'},
-         {'topic':'KNN','q1':'What is k in KNN?','q2':'How does KNN do missing value imputation?','q3':'When does KNN fail?'}        
-    ]
+
+    """
     
+    Generate a function which receives 'Statistics, KNN, Linear regression' and returns this:
+    data=[{'topic':'Statistics','q1':'What is mean?','q2':'What is median?','q3':'Why do we do hypothesis testing?'},
+         {'topic':'Linear regression','q1':'Describe the OLS process.','q2':'What are the BLUE properties?','q3':'What are the properties of residuals?'},
+         {'topic':'Logistic regression','q1':'How does MLE work?','q2':'Why do we use Z test for co-efficient in logistic regression?','q3':'How does OVR work?'},
+         {'topic':'KNN','q1':'What is k in KNN?','q2':'How does KNN do missing value imputation?','q3':'When does KNN fail?'}]
+
+    """
+
+    data=[{'topic':'Statistics','q1':'What is mean?','q2':'What is median?','q3':'Why do we do hypothesis testing?'},
+         {'topic':'Linear regression','q1':'Describe the OLS process.','q2':'What are the BLUE properties?','q3':'What are the properties of residuals?'},
+         {'topic':'Logistic regression','q1':'How does MLE work?','q2':'Why do we use Z test for co-efficient in logistic regression?','q3':'How does OVR work?'},
+         {'topic':'KNN','q1':'What is k in KNN?','q2':'How does KNN do missing value imputation?','q3':'When does KNN fail?'}]
+
     if request.method =='POST':
+
+        """input from form"""
+
+        
         return render_template('successt.html')
 
     return render_template("interview.html", uname=login_provided_by_aspirant, topics=user_topics, data = data)

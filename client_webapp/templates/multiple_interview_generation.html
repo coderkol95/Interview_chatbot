@@ -8,10 +8,15 @@
 </head>
 <body>
     <h1>Generate multiple interviews </h1><br>
-    <form method="POST" enctype="multipart/form-data" action="/multiple_interview_generation">
-        <label for="myfile">Select a file:</label>
-        <input type="file" id="myfile" name="myfile">
-        <input type='submit', value="Upload">
+
+    <a href ="https://drive.google.com/uc?id=1szk7VZUdLvs9nxfNaXJ7kWUxMqt8AiMy"> Download the template here</a>
+    <form method="POST" enctype="multipart/form-data" action="/multiple_interview_generation" enctype=multipart/form-data>
+        
+        <label for="deadline">Deadline(DD-MMM-YYYY):</label>
+        <input type="text" id="deadline" name="deadline"><br><br>    
+    
+        <input type=file name=file><input type=submit value=Upload>
+    
     </form>
     <a href ="{{url_for('dashboard')}}">Go back to interview dashboard</a><br>
     <a href ="{{url_for('logout')}}">Logout</a><br>

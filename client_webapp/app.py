@@ -1,5 +1,6 @@
-from flask import Flask, redirect, render_template, url_for, request
+from flask import Flask, redirect, render_template, url_for, request, jsonify, make_response
 from flask_wtf import FlaskForm
+from flask import request
 #from werkzeug import secure_filename
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, IntegerField
 from flask_sqlalchemy import SQLAlchemy
@@ -9,9 +10,27 @@ from flask_bcrypt import Bcrypt
 import numpy as np
 from flask_mail import Mail, Message
 import MySQLdb
+import flask_excel as excel
+import pandas as pd
+#import datetime as DT
+
+# deadline_days = 7
+# deadline = (DT.date.today() + DT.timedelta(days=deadline_days)).strftime('%d-%m-%y')
 
 # Initialising the app
 app = Flask(__name__)
+
+#Excel
+excel.init_excel(app)
+
+@app.route("/upload", methods=['GET', 'POST'])
+def upload_file():
+    if request.method == 'POST':
+        global data
+        # data = pd.DataFrame.from_dict(jsonify({"result": request.get_array(field_name='file')}))
+        data =  request.get_array(field_name='file')
+        details = pd.DataFrame(data)
+
 
 # Initialise the Mail class object with app for sending emails
 mail = Mail(app)
@@ -299,7 +318,6 @@ def single_interview_generation():
         deadline = request.form.get("deadline")
         r(f"INSERT into aspirant_topics(login,topics) VALUES ('{emailt}','{topics_for_printing}')")
         #Not to be sent. Ask user to register instead. Also can obtain user details like age etc.
-        #Also send email data to SQLdb and check at client side later
         
         msg = Message(
                 'Invitation for interview: Round 1 - Online interview',
@@ -327,51 +345,55 @@ def formatter(dataf):
     5. Return the list of emails and the dictionary created above
 
     """
-
     dataf.fillna('No', inplace=True)
     for i in range(len(dataf)):
         for col in dataf.columns[1:]:
             dataf[col][i] = col if dataf[col][i]=='Yes' else ''
-    emails = dataf.Email.tolist()
+    emails = dataf.iloc[:,0].tolist()
     topics={}
+    vals = {0:'Email',1:'Statistics',2:'Linear Regression',3:'Logistic Regression',4:'KNN',5:'SVM',6:'Kmeans',7:'Decision Tree',8:'Naive Bayes'}
+
     for i in range(dataf.shape[0]):
-        topics[emails[i]]=[x for x in dataf.iloc[i].tolist()[1:] if x!='']
+        topics[emails[i]]=[vals[kk] for kk in [x for x in dataf.iloc[i,:].tolist()[1:] if x!='']]
+    emails = emails[1:]
     return emails, topics
 
 @app.route("/multiple_interview_generation", methods=["GET","POST"])
 @login_required
 def multiple_interview_generation():
     
-    """
-
-    To be created.
-    
-    """
-
     if request.method=="POST":
+        """
         
-        
-        #uploaded_excel = request.form.get("file")
-        #print("Excel uploaded")
-        #uploaded_excel.save(secure_filename(uploaded_excel.filename))
-        
-        
-        
-        # a dataframe has to be sent
-        emas, tpcs = formatter(uploaded_excel)
-        #Not to be sent. Ask user to register instead. Also can obtain user details like age etc.
-        #Also send email data to SQLdb and check at client side later
-        
-        for em in emas:  
+        1. Provide sample for download
+        2. Accept deadline and client input from csv file
+        3. Convert excel to dataframe
+        4. Send it to the formatter function to obtain dictionary of emails:topics
+        5. Send emails with the topics to the aspirants
+
+        """
+
+        deadline = request.form.get("deadline")
+        data = pd.DataFrame(request.get_array(field_name='file'))
+        emas, tpcs = formatter(data)
+        # Not to be sent. Ask user to register instead. Also can obtain user details like age etc.
+     
+        for em in emas:
             random_pass = np.random.randint(1000000000)    
+
             msg = Message(
                     'Invitation for interview: Round 1 - Online interview',
                     sender ='testing.interviewbot@gmail.com',
                     recipients = [em]   #emailt
                 )
 
-            msg.body = f" Dear aspirant, \n\nCongratulations, you have been shortlisted for interview with 'The awesome data science company'. \nPlease take the interview at this link:_________________________. \nYou have to take the interview by {deadline}. \nYou will be tested in: {tpcs[em]}\n\nYour login credentials are: \n\nUsername: {em}\nPassword: {random_pass}.\n\nWe wish you all the best! \nRegards,\nHR\nThe awesome data science company"
+            msg.body = f" Dear aspirant, \n\nCongratulations, you have been shortlisted for interview with 'The awesome data science company'. \nPlease take the interview at this link:_________________________. \nYou have to take the interview by {deadline}. \nYou will be tested in: {', '.join(tpcs[em])}\n\nYour login credentials are: \n\nUsername: {em}\nPassword: {random_pass}.\n\nWe wish you all the best! \nRegards,\nHR\nThe awesome data science company"
+            
+            # print(msg.body)
             mail.send(msg)
+
+            r(f"INSERT into aspirant_topics(login,topics) VALUES ('{em}','{', '.join(tpcs[em])}')")
+
 
         return render_template("successt.html")
     return render_template("multiple_interview_generation.html")
@@ -400,6 +422,7 @@ if __name__=="__main__":
     Controlling function
 
     """
-    
+    excel.init_excel(app)
+
     app.run(debug=True)
 
