@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+#myDIV {
+  width: 100%;
+  padding: 50px 0;
+  text-align: center;
+  background-color: lightblue;
+  margin-top: 20px;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+    $(function(){
+    $('div.sing').hide();// hide it initially
+        $('button').on('click', function(){
+            $('div.mult, div.sing').toggle();
+        });
+    });
+</script>
+
+</head>
+<body>
+
+<button>Change</button>
+
+<div class="sing">
+<h1>Generate a single interview</h1><br>
+    <form method="POST" action="/single_interview_generation">
+        Statistics <input type="checkbox" value="Statistics" name="topic"><br>
+        Linear Regression <input type="checkbox" value="Linear Regression" name="topic"><br>
+        Logistic Regression <input type="checkbox" value="Logistic Regression" name="topic"><br>
+        KNN <input type="checkbox" value="KNN" name="topic"><br>
+        SVM <input type="checkbox" value="SVM" name="topic"><br>
+        KMeans <input type="checkbox" value="KMeans" name="topic"><br>
+        Decision Tree <input type="checkbox" value="Decision Tree" name="topic"><br>
+        Naive Bayes <input type="checkbox" value="Naive Bayes" name="topic">  <br><br>
+
+        <label for="email">Enter the interviewee email:</label>
+        <input type="email" id="email" name="email"><br><br>
+
+        <label for="deadline">Deadline(DD-MMM-YYYY):</label>
+        <input type="text" id="deadline" name="deadline"><br><br>
+
+        <input type='submit', value="Send email"><br>
+    </form>
+</div>
+
+<div class="mult">
+        <h1>Generate multiple interviews </h1><br>
+    
+        <a href ="https://drive.google.com/uc?id=1szk7VZUdLvs9nxfNaXJ7kWUxMqt8AiMy"> Download the template here</a>
+        <form method="POST" enctype="multipart/form-data" action="/multiple_interview_generation" enctype=multipart/form-data>
+            
+            <label for="deadline">Deadline(DD-MMM-YYYY):</label>
+            <input type="text" id="deadline" name="deadline"><br><br>    
+        
+            <input type=file name=file><input type=submit value=Upload>
+        </form>
+</div>
+
+
+<!-- <script>
+function multiple() {
+  var x = document.getElementById("mult");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+function single() {
+  var x = document.getElementById("sing");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script> -->
+
+
+<a href ="{{url_for('dashboard')}}">Go back to interview dashboard</a><br>
+<a href ="{{url_for('logout')}}">Logout</a><br>
+
+</body>
+</html>

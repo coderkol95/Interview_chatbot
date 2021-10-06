@@ -21,8 +21,6 @@ pass_rate = 40
 try:
     application = Flask(__name__)
     excel.init_excel(application)
-    mail = Mail(application)
-    db = SQLAlchemy(application) # Initialising SQLAlchemy database object for storing client login details
     bcrypt = Bcrypt(application) # Initialising hashing object for exchanging data between client and server
 
 except:
@@ -32,6 +30,11 @@ except:
 application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 application.config['SECRET_KEY'] = 'secretkey123'     #Statutory for security reasons
 application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+try:
+    db = SQLAlchemy(application) # Initialising SQLAlchemy database object for storing client login details
+except:
+    print("Problem with SQLAlchemy initialisation")
 
 """
 
@@ -51,6 +54,13 @@ application.config['MAIL_USERNAME'] = 'testing.interviewbot@gmail.com'
 application.config['MAIL_PASSWORD'] = 'pass*123'
 application.config['MAIL_USE_TLS'] = False
 application.config['MAIL_USE_SSL'] = True
+
+try:
+    mail = Mail(application)
+
+except:
+    print('Could not set up mail object')
+
 
 try:
 
@@ -160,6 +170,19 @@ def home():
     """
 
     return render_template('home.html')
+
+@application.route("/interview", methods=["GET","POST"])
+@login_required
+def interview():
+
+    """
+
+    This is the interview page for the client website
+
+    """
+
+    return render_template('interview.html')
+
 
 @application.route("/dashboard", methods=["GET","POST"])
 @login_required
