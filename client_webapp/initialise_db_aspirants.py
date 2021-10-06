@@ -26,6 +26,11 @@ def r(msg):
     else:
         runCMD(msg)
 
+"""
+
+Create table for storing aspirant email IDs and topics
+
+"""
 
 r('DROP TABLE if exists aspirant_topics')        
 r("CREATE TABLE aspirant_topics( \
