@@ -1,213 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard</title>
-  <style>
-    @import 'https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300';
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
 
-html,
+html {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+*,*:before,*:after {
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
 body {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  font-family: 'Open Sans Condensed', sans-serif;
+    background-color: rgb(0, 0, 0);
+    padding: 0;
+    margin: 0;
+    height: auto;
+    width: 100%;
 }
 
-div[class*=box] {
-	height: 33.33%;
-	width: 100%; 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+b {
+  position: relative;
+  display: block;
+  font-family: helvetica neue, helvetica, sans-serif;
+  line-height: 1.15em;
+  margin-top: -1.15em;
+  top: 2.3em;
+  font-size: 0.67em;
+  font-weight: 400;
+  letter-spacing: 0.025em;
+  opacity: 0.75;
+  text-align: center;
 }
 
-.box-1 { background-color: #161afa; }
-.box-2 { background-color: #3fa0d8; }
-.box-3 { background-color: #522cfd; }
-
-.btn {
-	line-height: 50px;
-	height: 50px;
-	text-align: center;
-	width: 250px;
-	cursor: pointer;
+b span {
+  font-size: 0.785em;
+  font-weight: 400;
+  opacity: 0.4;
 }
 
-/* 
-========================
-      BUTTON ONE
-========================
-*/
-.btn-one {
-	color: #FFF;
-	transition: all 0.3s;
-	position: relative;
-}
-.btn-one span {
-	transition: all 0.3s;
-}
-.btn-one::before {
-	content: '';
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 1;
-	opacity: 0;
-	transition: all 0.3s;
-	border-top-width: 1px;
-	border-bottom-width: 1px;
-	border-top-style: solid;
-	border-bottom-style: solid;
-	border-top-color: rgba(255,255,255,0.5);
-	border-bottom-color: rgba(255,255,255,0.5);
-	transform: scale(0.1, 1);
-}
-.btn-one:hover span {
-	letter-spacing: 2px;
-}
-.btn-one:hover::before {
-	opacity: 1;	
-	transform: scale(1, 1);	
-}
-.btn-one::after {
-	content: '';
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 1;
-	transition: all 0.3s;
-	background-color: rgba(255,255,255,0.1);
-}
-.btn-one:hover::after {
-	opacity: 0;	
-	transform: scale(0.1, 1);
+#intro {
+  width: 200px;
+  margin: 100px auto 0;
 }
 
-
-/* 
-========================
-      BUTTON TWO
-========================
-*/
-.btn-two {
-	color: #FFF;
-	transition: all 0.5s;
-	position: relative;	
-}
-.btn-two span {
-	z-index: 2;	
-	display: block;
-	position: absolute;
-	width: 100%;
-	height: 100%;	
-}
-.btn-two::before {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 1;
-	transition: all 0.5s;
-	border: 1px solid rgba(255,255,255,0.2);
-	background-color: rgba(255,255,255,0.1);
-}
-.btn-two::after {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 1;
-	transition: all 0.5s;
-	border: 1px solid rgba(255,255,255,0.2);
-	background-color: rgba(255,255,255,0.1);
-}
-.btn-two:hover::before {
-  transform: rotate(-45deg);
-  background-color: rgba(255,255,255,0);
-}
-.btn-two:hover::after {
-  transform: rotate(45deg);
-  background-color: rgba(255,255,255,0);
+.button {
+    display: inline-block;
+    text-decoration: none;
+    position: relative;
+    margin-top: 40px;
 }
 
-
-/* 
-========================
-      BUTTON THREE
-========================
-*/
-.btn-three {
-	color: #FFF;
-	transition: all 0.5s;
-	position: relative;
-}
-.btn-three::before {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 1;
-	background-color: rgba(255,255,255,0.1);
-	transition: all 0.3s;
-}
-.btn-three:hover::before {
-	opacity: 0 ;
-	transform: scale(0.5,0.5);
-}
-.btn-three::after {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 1;
-	opacity: 0;
-	transition: all 0.3s;
-	border: 1px solid rgba(255,255,255,0.5);
-	transform: scale(1.2,1.2);
-}
-.btn-three:hover::after {
-	opacity: 1;
-	transform: scale(1,1);
+.button .bottom {
+    position: absolute;
+    left: 7px;
+    top: 7px;
+    width: 100%;
+    height: 100%;
+    background-color: #2acdc1;
+    display: block;
+    -webkit-transition: all .15s ease-out;
+    -moz-transition: all .15s ease-out;
+    -o-transition: all .15s ease-out;
+    transition: all .15s ease-out;
 }
 
+.button .top {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 24px 34px 22px 34px;
+    border: 2px solid #04049d;
+}
 
+.button-dark .top {
+    border: 2px solid rgb(244, 245, 240);
+}
 
-  </style>
+.button .top .label {
+    font-family: sans-serif;
+    font-weight: 600;
+    color: #fcfcfc;
+    font-size: 12px;
+    line-height: 110%;
+    letter-spacing: 2px;
+    text-align: center;
+    text-transform: uppercase;
+    -webkit-transition: all .15s ease-out;
+    -moz-transition: all .15s ease-out;
+    -o-transition: all .15s ease-out;
+    transition: all .15s ease-out;
+}
 
+.button-dark .top .label {
+    color: #fff;
+}
+
+.button:hover .bottom {
+    left: 0;
+    top: 0;
+    background-color: #f3f3f3;
+}
+
+.button:hover .top .label {
+    color: #2acdc1;
+}
+
+.button-border {
+    position: absolute;
+    background-color: #2acdc1;
+    -webkit-transition: all .25s ease-out;
+    -moz-transition: all .25s ease-out;
+    -o-transition: all .25s ease-out;
+    transition: all .25s ease-out;
+}
+
+.button:hover .top .button-border-left,.button:hover .top .button-border-right {
+    height: calc(100% + 2px);
+}
+
+.button:hover .top .button-border-top,.button:hover .top .button-border-bottom {
+    width: calc(100% + 2px);
+}
+
+.button-border-left {
+    left: -2px;
+    bottom: -2px;
+    width: 2px;
+    height: 0;
+}
+
+.button-border-top {
+    left: -2px;
+    top: -2px;
+    width: 0;
+    height: 2px;
+}
+
+.button-border-right {
+    right: -2px;
+    top: -2px;
+    width: 2px;
+    height: 0;
+}
+
+.button-border-bottom {
+    right: -2px;
+    bottom: -2px;
+    width: 0;
+    height: 2px;
+}
+    </style>
 </head>
 <body>
-<!-- Hover #2 -->
-<div class="box-2">
-  <div class="btn btn-two">
-    <a href ="{{url_for('dashboard')}}"><span>Dashboard</span></a>
-  </div>
-</div>
-
-<!-- Hover #3 -->
-<div class="box-3">
-  <div class="btn btn-three">
-    <a href ="{{url_for('logout')}}"><span>Logout</span></a>
-  </div>
-</div>
-
+    
 </body>
 </html>
+<section id="intro">
+
+  <div id="intro-content" class="center-content">
+
+    <div class="center-content-inner">
+
+      <div class="content-section content-section-margin">
+
+        <div class="content-section-grid clearfix">
+        
+        <a href="{{url_for('dashboard')}}" class="button nav-link">
+
+          <div class="bottom"></div>
+
+          <div class="top">
+
+          <div class="label">Go to dashboard</div>
+            
+        		<div class="button-border button-border-left"></div>
+        	  <div class="button-border button-border-top"></div>
+        	  <div class="button-border button-border-right"></div>
+        		<div class="button-border button-border-bottom"></div>
+
+          </div>
+
+        	</a>
+
+
+            <a href="{{url_for('logout')}}" class="button nav-link">
+
+                <div class="bottom"></div>
+      
+                <div class="top">
+      
+                <div class="label">Log Out</div>
+                  
+                      <div class="button-border button-border-left"></div>
+                    <div class="button-border button-border-top"></div>
+                    <div class="button-border button-border-right"></div>
+                      <div class="button-border button-border-bottom"></div>
+      
+                </div>
+      
+                </a>
+
+        </div>
+
+       </div>
+
+      </div>
+
+     </div>
+
+  </section>
