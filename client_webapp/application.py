@@ -1,14 +1,13 @@
 from flask import Flask, redirect, render_template, url_for, request
 from flask import request
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user
+from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 from flask_bcrypt import Bcrypt
 from flask_mail import Mail, Message
 import MySQLdb
 import flask_excel as excel
 import pandas as pd
 from helper import dftolist, formatter
-from forms import RegisterForm, LoginForm
 import numpy as np
 #import datetime as DT
 
@@ -160,16 +159,15 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(20), nullable=False, unique=True)
     password = db.Column(db.String(80), nullable=False)
 
-@application.route("/")
-def home():
+# def home():
 
-    """
+#     """
 
-    This is the landing page for the client website
+#     This is the landing page for the client website
 
-    """
+#     """
 
-    return render_template('home.html')
+#     return render_template('home.html')
 
 @application.route("/interview", methods=["GET","POST"])
 @login_required
@@ -196,6 +194,7 @@ def dashboard():
 
     return render_template('dashboard.html')
 
+@application.route("/")
 @application.route("/login", methods=["GET","POST"])
 def login():
 
@@ -210,27 +209,32 @@ def login():
     4. Send the logged in user to the dashboard
 
     """
-
-    form = LoginForm()
-    # print("Printing before login form is validated")
-    if form.validate_on_submit():
-        # print("Printing after login form is validated")
-        user = User.query.filter_by(username=form.username.data).first()
-        # print(f"Form input {form.username.data}")
-        # print(f"User is {user}")
+    if request.method=="POST":
+    # form = LoginForm()
+    # # print("Printing before login form is validated")
+    # if form.validate_on_submit():
+    #     # print("Printing after login form is validated")
+    #     user = User.query.filter_by(username=form.username.data).first()
+    #     # print(f"Form input {form.username.data}")
+    #     # print(f"User is {user}")
+    #     if user:
+    #         # print(f"User {user} found")
+    #         if bcrypt.check_password_hash(user.password, form.password.data):
+    #             # user.authenticated = True  #@@
+    #             # db.session.add(user)  #@@
+    #             # db.session.commit()   #@@
+        uname = request.form.get("username")
+        pwwd = request.form.get("password")
+        user = User.query.filter_by(username=uname).first()
         if user:
-            # print(f"User {user} found")
-            if bcrypt.check_password_hash(user.password, form.password.data):
-                # user.authenticated = True  #@@
-                # db.session.add(user)  #@@
-                # db.session.commit()   #@@
+            if bcrypt.check_password_hash(user.password, pwwd):
+
                 login_user(user)
                 return redirect(url_for("dashboard"))
         else:
-            return redirect(url_for("register"))
+            return redirect(url_for("login"))
 
-    return render_template("login.html", form=form)
-
+    return render_template("login.html")
 # @application.route("/register", methods=["GET","POST"])
 # def register():
 
@@ -341,7 +345,7 @@ def multiple_interview_generation():
         data = pd.DataFrame(request.get_array(field_name='file'))
         emas, tpcs = formatter(data)
         # Not to be sent. Ask user to register instead. Also can obtain user details like age etc.
-     
+
         for em in emas:
             # random_pass = np.random.randint(1000000000)    
             msg = Message(
@@ -353,7 +357,6 @@ def multiple_interview_generation():
             mail.send(msg)
 
             r(f"INSERT into aspirant_topics(login,topics) VALUES ('{em}','{', '.join(tpcs[em])}')")
-
 
         return render_template("successt.html")
     return render_template("multiple_interview_generation.html")
@@ -373,7 +376,7 @@ def logout():
     # user.authenticated = False  #@@
     # db.session.add(user)  #@@
     # db.session.commit()  #@@
-    return redirect(url_for('home'))
+    return redirect(url_for('login'))
 
 if __name__=="__main__":
 
