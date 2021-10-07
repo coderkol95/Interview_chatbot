@@ -315,7 +315,7 @@ def single_interview_generation():
                 recipients = [emailt]   #emailt
                )
         msg.body = f" Dear aspirant, \n\nCongratulations, you have been shortlisted for interview with 'The awesome data science company'. \nPlease take the interview at this link:_________________________. \nYou have to take the interview by {deadline}. \nYou will be tested in: {topics_for_printing}\n\nPlease login with this ID: {emailt}.\n\nWe wish you all the best! \nRegards,\nHR\nThe awesome data science company"
-        mail.send(msg)
+        # mail.send(msg)
         
         return render_template('successt.html')
     return render_template("single_interview_generation.html")
