@@ -17,9 +17,9 @@ def dftolist(dataf, pass_rate):
     
     """
 
-    dataf['Scores_Obtained'] = round(dataf['Scores_Obtained'],2)
-    dataf['MaxMarks'] = round(dataf['MaxMarks'],2)
-    dataf['percentage'] = round(dataf['Scores_Obtained']/dataf['MaxMarks'],4) * 100
+    dataf['Scores_Obtained'] = dataf['Scores_Obtained'].astype('int')
+    dataf['MaxMarks'] = dataf['MaxMarks'].astype('int')
+    dataf['percentage'] = (dataf['Scores_Obtained']/dataf['MaxMarks']*100).astype('int')
 
     dataf['passed'] = dataf['percentage'].apply(lambda x: 'Yes' if x>pass_rate else 'No')
 

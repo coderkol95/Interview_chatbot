@@ -16,7 +16,7 @@ import numpy as np
 
 # Pass rate for aspirants
 pass_rate = 40
-
+client_app = 'ec2-18-223-239-109.us-east-2.compute.amazonaws.com:5000'
 try:
     application = Flask(__name__)
     excel.init_excel(application)
@@ -273,7 +273,7 @@ def generate_report():
     This function fetches the report from the table and diplays the candidate data
     
     """
-    data = r('select * from overall_Scores')
+    data = r('select * from overall_Scores ORDER BY saved_date')
     listitems = dftolist(data, pass_rate)
 
     return render_template("generate_report.html", data=listitems)
@@ -314,7 +314,7 @@ def single_interview_generation():
                 sender ='testing.interviewbot@gmail.com',
                 recipients = [emailt]   #emailt
                )
-        msg.body = f" Dear aspirant, \n\nCongratulations, you have been shortlisted for interview with 'The awesome data science company'. \nPlease take the interview at this link:_________________________. \nYou have to take the interview by {deadline}. \nYou will be tested in: {topics_for_printing}\n\nPlease login with this ID: {emailt}.\n\nWe wish you all the best! \nRegards,\nHR\nThe awesome data science company"
+        msg.body = f" Dear aspirant, \n\nCongratulations, you have been shortlisted for interview with 'The awesome data science company'. \nPlease take the interview at this link: {client_app} \nYou have to take the interview by {deadline}. \nYou will be tested in: {topics_for_printing}\n\nPlease login with this ID: {emailt}.\n\nWe wish you all the best! \nRegards,\nHR\nThe awesome data science company"
         mail.send(msg)
         
         return render_template('successt.html')
@@ -353,7 +353,7 @@ def multiple_interview_generation():
                     sender ='testing.interviewbot@gmail.com',
                     recipients = [em]   #emailt
                 )
-            msg.body = f" Dear aspirant, \n\nCongratulations, you have been shortlisted for interview with 'The awesome data science company'. \nPlease take the interview at this link:_________________________. \nYou have to take the interview by {deadline}. \nYou will be tested in: {', '.join(tpcs[em])}\n\nYour login credentials are: \n\nUsername: {em}.\n\nWe wish you all the best! \nRegards,\nHR\nThe awesome data science company"
+            msg.body = f" Dear aspirant, \n\nCongratulations, you have been shortlisted for interview with 'The awesome data science company'. \nPlease take the interview at this link: {client_app} \nYou have to take the interview by {deadline}. \nYou will be tested in: {', '.join(tpcs[em])}\n\nYour login credentials are: \n\nUsername: {em}.\n\nWe wish you all the best! \nRegards,\nHR\nThe awesome data science company"
             mail.send(msg)
 
             r(f"INSERT into aspirant_topics(login,topics) VALUES ('{em}','{', '.join(tpcs[em])}')")
